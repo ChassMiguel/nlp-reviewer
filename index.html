@@ -1,0 +1,1246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NLP Practice Exam: Complete 87-Question Retake</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .choice-option:hover { background-color: #f1f5f9; }
+    .selected-opt { border-color: #4f46e5; background-color: #eef2ff; }
+  </style>
+</head>
+<body class="bg-slate-100 text-slate-800 font-sans min-h-screen">
+
+  <!-- Header -->
+  <header class="bg-indigo-900 text-white sticky top-0 z-50 shadow-md">
+    <div class="max-w-5xl mx-auto px-4 py-3 flex flex-wrap justify-between items-center gap-3">
+      <div>
+        <h1 class="text-lg md:text-xl font-bold">NLP Practice Assessment</h1>
+        <p class="text-xs text-indigo-200">Modules 1 & 2: Review Quiz, Data Structures Activity & Long Quiz</p>
+      </div>
+      <div class="flex items-center gap-3">
+        <div id="statBox" class="text-right text-xs md:text-sm">
+          <span class="text-indigo-200">Answered:</span> <span id="answeredCount" class="font-bold">0</span> / 87
+          <span class="mx-1 text-indigo-400">|</span>
+          <span class="text-indigo-200">Score:</span> <span id="scoreBadge" class="font-bold text-emerald-300">--</span>
+        </div>
+        <button onclick="gradeAll()" class="bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-xs md:text-sm px-3.5 py-1.5 rounded-lg shadow transition">
+          Submit & Grade Exam
+        </button>
+        <button onclick="resetExam()" class="bg-rose-700 hover:bg-rose-600 text-white font-semibold text-xs md:text-sm px-3 py-1.5 rounded-lg transition">
+          Reset
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Filter Bar -->
+  <nav class="max-w-5xl mx-auto px-4 py-3 flex flex-wrap gap-2 text-xs md:text-sm">
+    <button onclick="setFilter('all')" class="tab-btn font-medium px-3 py-1.5 rounded-md bg-indigo-600 text-white" id="tab-all">All Questions (87)</button>
+    <button onclick="setFilter('review')" class="tab-btn font-medium px-3 py-1.5 rounded-md bg-white text-slate-700 border hover:bg-slate-100" id="tab-review">Review Quiz (27)</button>
+    <button onclick="setFilter('activity')" class="tab-btn font-medium px-3 py-1.5 rounded-md bg-white text-slate-700 border hover:bg-slate-100" id="tab-activity">Module 1 Activity (30)</button>
+    <button onclick="setFilter('longquiz')" class="tab-btn font-medium px-3 py-1.5 rounded-md bg-white text-slate-700 border hover:bg-slate-100" id="tab-longquiz">Long Quiz (30)</button>
+  </nav>
+
+  <!-- Main Container -->
+  <main class="max-w-5xl mx-auto px-4 pb-20 space-y-5" id="questionsContainer">
+    <!-- Generated dynamically -->
+  </main>
+
+  <script>
+    const questions = [
+      // ==========================================
+      // SECTION 1: REVIEW QUIZ (27 Questions)
+      // ==========================================
+      {
+        id: 1,
+        sec: "review",
+        label: "Review Quiz — Question 1",
+        q: "A researcher is building a sentiment-analysis system. After tokenizing thousands of reviews, the researcher wants to determine how frequently each word appears.\n\nWhich data structure would be the most appropriate for mapping each word to its frequency?",
+        type: "mcq",
+        choices: ["Tree", "Graph", "Dictionary", "Stack"],
+        correct: "Dictionary"
+      },
+      {
+        id: 2,
+        sec: "review",
+        label: "Review Quiz — Question 2",
+        q: "An NLP pipeline performs these operations:\n1. Raw text is split into tokens.\n2. Tokens are stored in a list.\n3. Token frequencies are stored in a dictionary.\n4. Numerical representations are placed into arrays.\n\nWhich statement best evaluates this pipeline?",
+        type: "mcq",
+        choices: [
+          "It follows the module's described relationship between NLP processing and data structures",
+          "It is incorrect because dictionaries cannot be used in NLP",
+          "It is incorrect because lists should always be replaced with graphs.",
+          "It is unnecessary because raw text is already structured"
+        ],
+        correct: "It follows the module's described relationship between NLP processing and data structures"
+      },
+      {
+        id: 3,
+        sec: "review",
+        label: "Review Quiz — Question 3",
+        q: "A developer represents social-media users as nodes and friendships as edges. The developer wants to analyze relationships among users.\n\nWhich data structure is most appropriate?",
+        type: "mcq",
+        choices: ["Graph", "Stack", "Array only", "Dictionary only"],
+        correct: "Graph"
+      },
+      {
+        id: 4,
+        sec: "review",
+        label: "Review Quiz — Question 4",
+        q: "Consider the text:\n\"I love NLP. It's powerful!\"\n\nA developer wants to identify the two separate sentences before performing word-level processing.\nWhich sequence is most logical?",
+        type: "mcq",
+        choices: [
+          "Word tokenization → sentence tokenization",
+          "Sentence tokenization → word tokenization",
+          "Character tokenization → dictionary creation",
+          "POS tagging → sentence tokenization"
+        ],
+        correct: "Sentence tokenization → word tokenization"
+      },
+      {
+        id: 5,
+        sec: "review",
+        label: "Review Quiz — Question 5",
+        q: "A classification system uses a decision tree to determine whether a message belongs to Category A or Category B.\n\nWhy is the tree structure appropriate?",
+        type: "mcq",
+        choices: [
+          "It represents decisions through nodes and outcomes through leaves",
+          "It automatically tokenizes every sentence",
+          "It stores every word as a character",
+          "It converts every graph into a tensor"
+        ],
+        correct: "It represents decisions through nodes and outcomes through leaves"
+      },
+      {
+        id: 6,
+        sec: "review",
+        label: "Review Quiz — Question 6",
+        q: "A dataset contains missing values that must be filtered during preprocessing. According to the module, which data structure could conveniently be used to manipulate the sequence of data during this operation?",
+        type: "mcq",
+        choices: ["Python list", "Graph", "Decision tree", "Tensor only"],
+        correct: "Python list"
+      },
+      {
+        id: 7,
+        sec: "review",
+        label: "Review Quiz — Question 7",
+        q: "A company is developing an NLP system for a language where word boundaries are difficult to identify clearly. The team wants the tokenizer to preserve very detailed information about the text.\n\nWhich approach from the module would be particularly useful?",
+        type: "mcq",
+        choices: [
+          "Character-level tokenization",
+          "Sentence-level tokenization",
+          "Dictionary lookup only",
+          "Decision-tree construction"
+        ],
+        correct: "Character-level tokenization"
+      },
+      {
+        id: 8,
+        sec: "review",
+        label: "Review Quiz — Question 8",
+        q: "A search engine receives the query:\n\"best restaurants near Manila\"\n\nWhy would tokenization be useful before searching a large collection of documents?",
+        type: "mcq",
+        choices: [
+          "It transforms the query into manageable units that can help the system process and match information.",
+          "It guarantees that the first search result is correct",
+          "It automatically writes a response to the user",
+          "It converts every document into a decision tree"
+        ],
+        correct: "It transforms the query into manageable units that can help the system process and match information."
+      },
+      {
+        id: 9,
+        sec: "review",
+        label: "Review Quiz — Question 9",
+        q: "A developer receives the following text:\n\"Machine learning is amazing! However, some students find it difficult.\"\n\nThe developer wants an NLP system to determine the sentiment of each complete thought separately. Which preprocessing approach would be most appropriate as the first step?",
+        type: "mcq",
+        choices: [
+          "Character-level tokenization",
+          "Sentence-level tokenization",
+          "Dictionary construction",
+          "POS tagging"
+        ],
+        correct: "Sentence-level tokenization"
+      },
+      {
+        id: 10,
+        sec: "review",
+        label: "Review Quiz — Question 10",
+        q: "A student claims:\n\"Tokenization is unnecessary because machine-learning algorithms can directly understand raw paragraphs.\"\n\nWhich response best evaluates the student's claim using the module?",
+        type: "mcq",
+        choices: [
+          "Correct, because raw paragraphs are already numerical data",
+          "Correct, because tokenization is used only for search engines",
+          "Incorrect, because tokenization transforms raw text into structured units that algorithms can process",
+          "Incorrect, because tokenization converts every paragraph into an image"
+        ],
+        correct: "Incorrect, because tokenization transforms raw text into structured units that algorithms can process"
+      },
+      {
+        id: 11,
+        sec: "review",
+        label: "Review Quiz — Question 11",
+        q: "These are words such as \"a,\" \"an,\" and \"the.\"",
+        type: "text",
+        accepted: ["articles", "article"],
+        correct: "articles"
+      },
+      {
+        id: 12,
+        sec: "review",
+        label: "Review Quiz — Question 12",
+        q: "A developer is deciding whether to represent word-frequency information using a matrix or a dictionary. The main requirement is to quickly associate each individual word with its frequency.\n\nWhich choice is more directly suited to this requirement?",
+        type: "mcq",
+        choices: ["Dictionary", "Decision tree", "Graph", "Stack"],
+        correct: "Dictionary"
+      },
+      {
+        id: 13,
+        sec: "review",
+        label: "Review Quiz — Question 13",
+        q: "A machine-translation system receives a long paragraph. The developers want to preserve sentence boundaries so that each sentence can be translated and reconstructed appropriately.\n\nWhich tokenization level is most useful for the initial segmentation?",
+        type: "mcq",
+        choices: ["Character", "Subword", "Sentence", "Dictionary"],
+        correct: "Sentence"
+      },
+      {
+        id: 14,
+        sec: "review",
+        label: "Review Quiz — Question 14",
+        q: "According to the module, this part of speech \"modifies or describes a noun or pronoun.\"",
+        type: "text",
+        accepted: ["adjective", "adjectives"],
+        correct: "adjective"
+      },
+      {
+        id: 15,
+        sec: "review",
+        label: "Review Quiz — Question 15",
+        q: "A developer wants to process the sentence:\n\"I love NLP.\"\n\nUsing the tokenization approach demonstrated in the module, which result is most appropriate?",
+        type: "mcq",
+        choices: [
+          "[\"I love NLP.\"]",
+          "[\"I\", \"love\", \"NLP\", \".\"]",
+          "[\"I\", \"love\", \"NLP\"]",
+          "[\"I\", \"\", \"love\", \"\", \"NLP\", \".\"]"
+        ],
+        correct: "[\"I\", \"love\", \"NLP\", \".\"]"
+      },
+      {
+        id: 16,
+        sec: "review",
+        label: "Review Quiz — Question 16",
+        q: "These are words such as \"and,\" \"but,\" and \"or.\"",
+        type: "text",
+        accepted: ["conjunction", "conjunctions"],
+        correct: "conjunction"
+      },
+      {
+        id: 17,
+        sec: "review",
+        label: "Review Quiz — Question 17",
+        q: "This is the term for the base or dictionary form of a word that lemmatization aims to return.",
+        type: "text",
+        accepted: ["lemma"],
+        correct: "lemma"
+      },
+      {
+        id: 18,
+        sec: "review",
+        label: "Review Quiz — Question 18",
+        q: "A team is designing a modern NLP system that frequently encounters rare or previously unseen words. Which tokenization strategy would generally be the strongest choice based on the module?",
+        type: "mcq",
+        choices: [
+          "Sentence tokenization only",
+          "Word tokenization only",
+          "Subword tokenization",
+          "Removing all rare words"
+        ],
+        correct: "Subword tokenization"
+      },
+      {
+        id: 19,
+        sec: "review",
+        label: "Review Quiz — Question 19",
+        q: "According to the module, this part of speech \"is a word used in place of a noun.\"",
+        type: "text",
+        accepted: ["pronoun", "pronouns"],
+        correct: "pronoun"
+      },
+      {
+        id: 20,
+        sec: "review",
+        label: "Review Quiz — Question 20",
+        q: "A virtual assistant converts a user's spoken request into text and then needs to determine the user's intent.\n\nWhich statement best explains the role of tokenization in this process?",
+        type: "mcq",
+        choices: [
+          "Tokenization converts speech directly into sound waves",
+          "Tokenization breaks the resulting text into manageable units for further processing",
+          "Tokenization replaces the need for speech recognition",
+          "Tokenization guarantees correct intent detection"
+        ],
+        correct: "Tokenization breaks the resulting text into manageable units for further processing"
+      },
+      {
+        id: 21,
+        sec: "review",
+        label: "Review Quiz — Question 21",
+        q: "Suppose a vocabulary contains the words:\nplay, plays, played, and playing.\n\nA preprocessing system needs to reduce related words to a common root-like representation. Which NLTK capability would be most relevant?",
+        type: "mcq",
+        choices: [
+          "Graph construction",
+          "Stemming or lemmatization",
+          "Sentence tokenization",
+          "Hash-table traversal"
+        ],
+        correct: "Stemming or lemmatization"
+      },
+      {
+        id: 22,
+        sec: "review",
+        label: "Review Quiz — Question 22",
+        q: "A developer tokenizes the word:\n\"unhappiness\"\nusing a BPE-style subword approach and obtains:\n[\"un\", \"happi\", \"ness\"]\n\nWhat is the main advantage demonstrated by this representation?",
+        type: "mcq",
+        choices: [
+          "The word is treated as one indivisible unit",
+          "The word can be represented through smaller meaningful subword units",
+          "Every letter is represented separately",
+          "The entire sentence is represented as one token"
+        ],
+        correct: "The word can be represented through smaller meaningful subword units"
+      },
+      {
+        id: 23,
+        sec: "review",
+        label: "Review Quiz — Question 23",
+        q: "A chatbot receives the input:\n\"I can't reset my password.\"\n\nA programmer uses a simple whitespace tokenizer and obtains:\n[\"I\", \"can't\", \"reset\", \"my\", \"password.\"]\n\nThe chatbot sometimes fails to identify the user's request. Which improvement would most directly address the problem?",
+        type: "mcq",
+        choices: [
+          "Convert every word into a separate sentence",
+          "Use a tokenizer that can handle punctuation and contractions",
+          "Replace the input with numerical values immediately",
+          "Store the entire sentence as one dictionary key"
+        ],
+        correct: "Use a tokenizer that can handle punctuation and contractions"
+      },
+      {
+        id: 24,
+        sec: "review",
+        label: "Review Quiz — Question 24",
+        q: "These are words such as \"in,\" \"on,\" and \"at.\"",
+        type: "text",
+        accepted: ["preposition", "prepositions"],
+        correct: "prepositions"
+      },
+      {
+        id: 25,
+        sec: "review",
+        label: "Review Quiz — Question 25",
+        q: "A programmer uses NLTK to tokenize a paragraph. The resulting tokens are then stored in a Python list. The programmer later creates a dictionary that maps each token to its frequency.\n\nWhat does this example best demonstrate?",
+        type: "mcq",
+        choices: [
+          "NLP tools and data structures can work together to transform raw text into structured data",
+          "NLTK eliminates the need for data structures",
+          "Dictionaries are used only for storing sentences",
+          "Tokenization and data structures are unrelated processes"
+        ],
+        correct: "NLP tools and data structures can work together to transform raw text into structured data"
+      },
+      {
+        id: 26,
+        sec: "review",
+        label: "Review Quiz — Question 26",
+        q: "A programmer wants to determine whether a user's message contains a person's name, location, or date.\n\nWhich NLTK capability would be most relevant?",
+        type: "mcq",
+        choices: [
+          "Named Entity Recognition",
+          "Character tokenization",
+          "Array normalization",
+          "Breadth-first search"
+        ],
+        correct: "Named Entity Recognition"
+      },
+      {
+        id: 27,
+        sec: "review",
+        label: "Review Quiz — Question 27",
+        q: "A sentiment-analysis model receives:\n\"This product is amazing, but the delivery was late.\"\n\nThe system should preserve the words indicating both positive and negative sentiment.\nWhy is tokenization important in this situation?",
+        type: "mcq",
+        choices: [
+          "It automatically determines the final sentiment without a model",
+          "It transforms the raw text into manageable units that can be processed by the sentiment model",
+          "It guarantees that the review is classified as positive",
+          "It eliminates words that contain emotional meaning"
+        ],
+        correct: "It transforms the raw text into manageable units that can be processed by the sentiment model"
+      },
+
+      // ==========================================
+      // SECTION 2: MODULE 1 ACTIVITY (30 Questions)
+      // ==========================================
+      {
+        id: 28,
+        sec: "activity",
+        label: "Module 1 Activity — Question 1",
+        q: "In Pokemon, a trainer stores their captured Pokémon in the order they were caught. Which structure should be used?",
+        type: "mcq",
+        choices: ["Arrays", "List", "Stacks and Queues", "Graphs", "Trees", "Hash tables", "Matrices and Tensors"],
+        correct: "List"
+      },
+      {
+        id: 29,
+        sec: "activity",
+        label: "Module 1 Activity — Question 2",
+        q: "In Kuroko no Basket, Kagami's shooting accuracy from different positions on the court needs to be stored in a structured table. What should be used?",
+        type: "mcq",
+        choices: ["Arrays", "List", "Stacks and Queues", "Graphs", "Trees", "Hash tables", "Matrices and Tensors"],
+        correct: "Arrays"
+      },
+      {
+        id: 30,
+        sec: "activity",
+        label: "Module 1 Activity — Question 3",
+        q: "In One Piece, the Straw Hats' allies and enemies across different islands are represented as connected points. Which structure is this?",
+        type: "mcq",
+        choices: ["Arrays", "List", "Stacks and Queues", "Graphs", "Trees", "Hash tables", "Matrices and Tensors"],
+        correct: "Graphs"
+      },
+      {
+        id: 31,
+        sec: "activity",
+        label: "Module 1 Activity — Question 4",
+        q: "In One Piece, Luffy's Gear transformations are stored using stamina, power, and speed dimensions. What structure applies?",
+        type: "mcq",
+        choices: ["Array", "List", "Stacks and Queues", "Graphs", "Trees", "Hash tables", "Matrices and Tensors"],
+        correct: "Array"
+      },
+      {
+        id: 32,
+        sec: "activity",
+        label: "Module 1 Activity — Question 5",
+        q: "In Haikyuu!!, a coach records the team's stats during a match with rows as players and columns as points, blocks, and serves. Which structure should be used?",
+        type: "mcq",
+        choices: ["Arrays", "List", "Stacks and Queues", "Graphs", "Trees", "Hash tables", "Matrices and Tensors"],
+        correct: "Arrays"
+      },
+      {
+        id: 33,
+        sec: "activity",
+        label: "Module 1 Activity — Question 6",
+        q: "In Naruto, ninja villages are connected by trade routes and alliances. What structure models this?",
+        type: "mcq",
+        choices: ["Arrays", "List", "Stacks and Queues", "Graphs", "Trees", "Hash tables", "Matrices and Tensors"],
+        correct: "Graphs"
+      },
+      {
+        id: 34,
+        sec: "activity",
+        label: "Module 1 Activity — Question 7",
+        q: "In Dragon Ball, Goku's progression from martial arts to Kaioken, then Super Saiyan, and finally Ultra Instinct follows a hierarchy. Which structure models this?",
+        type: "mcq",
+        choices: ["Arrays", "List", "Stacks and Queues", "Graphs", "Trees", "Hash tables", "Matrices and Tensors"],
+        correct: "Trees"
+      },
+      {
+        id: 35,
+        sec: "activity",
+        label: "Module 1 Activity — Question 8",
+        q: "In Death Note, Light writes names in a notebook where the last written is the first one he checks. What structure is this?",
+        type: "mcq",
+        choices: ["Arrays", "List", "Stacks and Queues", "Graphs", "Trees", "Hash tables", "Matrices and Tensors"],
+        correct: "Stacks and Queues"
+      },
+      {
+        id: 36,
+        sec: "activity",
+        label: "Module 1 Activity — Question 9",
+        q: "In Haikyuu!!, the volleyball's movement in 3D (time × x × y × z) is recorded. Which structure fits best?",
+        type: "mcq",
+        choices: ["Array", "List", "Stacks and Queues", "Graphs", "Trees", "Hash tables", "Matrices and Tensors"],
+        correct: "Matrices and Tensors"
+      },
+      {
+        id: 37,
+        sec: "activity",
+        label: "Module 1 Activity — Question 10",
+        q: "In Fairy Tail, the guild's missions are chosen starting from S-class quests and branching into possible outcomes. Which structure applies?",
+        type: "mcq",
+        choices: ["Arrays", "List", "Stacks and Queues", "Graphs", "Trees", "Hash tables", "Matrices and Tensors"],
+        correct: "Trees"
+      },
+      {
+        id: 38,
+        sec: "activity",
+        label: "Module 1 Activity — Question 11",
+        q: "In Sword Art Online, players are represented as points and guild relationships connect them. What structure is being used?",
+        type: "mcq",
+        choices: ["Arrays", "List", "Stacks and Queues", "Graphs", "Trees", "Hash tables", "Matrices and Tensors"],
+        correct: "Graphs"
+      },
+      {
+        id: 39,
+        sec: "activity",
+        label: "Module 1 Activity — Question 12",
+        q: "In Hunter x Hunter, Gon takes turns with Killua and Leorio in a battle tournament, following order. Which structure models this?",
+        type: "mcq",
+        choices: ["Arrays", "List", "Stacks and Queues", "Graphs", "Trees", "Hash tables", "Matrices and Tensors"],
+        correct: "Stacks and Queues"
+      },
+      {
+        id: 40,
+        sec: "activity",
+        label: "Module 1 Activity — Question 13",
+        q: "In One Piece, different Devil Fruits are linked to their special abilities. Which structure does this represent?",
+        type: "mcq",
+        choices: ["Arrays", "List", "Stacks and Queues", "Graphs", "Trees", "Hash tables", "Matrices and Tensors"],
+        correct: "Hash tables"
+      },
+      {
+        id: 41,
+        sec: "activity",
+        label: "Module 1 Activity — Question 14",
+        q: "In Naruto, the Uchiha clan's genealogy is represented as a branching family diagram. Which structure is this?",
+        type: "mcq",
+        choices: ["Arrays", "List", "Stacks and Queues", "Graphs", "Trees", "Hash tables", "Matrices and Tensors"],
+        correct: "Trees"
+      },
+      {
+        id: 42,
+        sec: "activity",
+        label: "Module 1 Activity — Question 15",
+        q: "In Naruto, ninja names are paired with their chakra nature type. Which structure is appropriate?",
+        type: "mcq",
+        choices: ["Array", "List", "Stacks and Queues", "Graphs", "Trees", "Hash tables", "Matrices and Tensors"],
+        correct: "Hash tables"
+      },
+      {
+        id: 43,
+        sec: "activity",
+        label: "Module 1 Activity — Question 16",
+        q: "In My Hero Academia, all students' quirks are encoded using multiple attributes (student × quirk type × strength factor). Which structure is this?",
+        type: "mcq",
+        choices: ["Array", "List", "Stacks and Queues", "Graphs", "Trees", "Hash tables", "Matrices and Tensors"],
+        correct: "Array"
+      },
+      {
+        id: 44,
+        sec: "activity",
+        label: "Module 1 Activity — Question 17",
+        q: "In Sword Art Online, Kirito keeps track of swords and items in his inventory. Which structure is appropriate?",
+        type: "mcq",
+        choices: ["Arrays", "List", "Stacks and Queues", "Graphs", "Trees", "Hash tables", "Matrices and Tensors"],
+        correct: "List"
+      },
+      {
+        id: 45,
+        sec: "activity",
+        label: "Module 1 Activity — Question 18",
+        q: "In Dragon Ball Super, fusion power multipliers are stored as a table comparing fighter 1 vs fighter 2. What structure is this?",
+        type: "mcq",
+        choices: ["Array", "List", "Stacks and Queues", "Graphs", "Trees", "Hash tables", "Matrices and Tensors"],
+        correct: "Matrices and Tensors"
+      },
+      {
+        id: 46,
+        sec: "activity",
+        label: "Module 1 Activity — Question 19",
+        q: "In Pokemon, each Pokémon is connected to its Pokédex number for easy lookup. What structure fits best?",
+        type: "mcq",
+        choices: ["Array", "List", "Stacks and Queues", "Graphs", "Trees", "Hash tables", "Matrices and Tensors"],
+        correct: "Hash tables"
+      },
+      {
+        id: 47,
+        sec: "activity",
+        label: "Module 1 Activity — Question 20",
+        q: "In Dragon Ball Z, fighters' power levels (strength, speed, stamina) are compared in the Tournament of Power. What structure is best?",
+        type: "mcq",
+        choices: ["Arrays", "List", "Stacks and Queues", "Graphs", "Trees", "Hash tables", "Matrices and Tensors"],
+        correct: "Arrays"
+      },
+      {
+        id: 48,
+        sec: "activity",
+        label: "Module 1 Activity — Question 21",
+        q: "In Attack on Titan, Titan shifters are associated with their unique abilities. Which structure applies?",
+        type: "mcq",
+        choices: ["Array", "List", "Stacks and Queues", "Graphs", "Trees", "Hash tables", "Matrices and Tensors"],
+        correct: "Hash tables"
+      },
+      {
+        id: 49,
+        sec: "activity",
+        label: "Module 1 Activity — Question 22",
+        q: "In Neon Genesis Evangelion, Eva sync rates with pilots are tracked across multiple tests in a table. Which structure fits?",
+        type: "mcq",
+        choices: ["Array", "List", "Stacks and Queues", "Graphs", "Trees", "Hash tables", "Matrices and Tensors"],
+        correct: "Matrices and Tensors"
+      },
+      {
+        id: 50,
+        sec: "activity",
+        label: "Module 1 Activity — Question 23",
+        q: "In Bleach, Ichigo keeps a list of hollows to fight, always defeating the first one added. Which structure applies?",
+        type: "mcq",
+        choices: ["Arrays", "List", "Stacks and Queues", "Graphs", "Trees", "Hash tables", "Matrices and Tensors"],
+        correct: "Stacks and Queues"
+      },
+      {
+        id: 51,
+        sec: "activity",
+        label: "Module 1 Activity — Question 24",
+        q: "In One Piece, each Straw Hat crew member's bounty across different arcs is kept in a table-like form. Which structure fits?",
+        type: "mcq",
+        choices: ["Arrays", "List", "Stacks and Queues", "Graphs", "Trees", "Hash tables", "Matrices and Tensors"],
+        correct: "Arrays"
+      },
+      {
+        id: 52,
+        sec: "activity",
+        label: "Module 1 Activity — Question 25",
+        q: "In Naruto, candidates line up and wait their turn for the Chunin Exam. Which structure fits best?",
+        type: "mcq",
+        choices: ["Arrays", "List", "Stacks and Queues", "Graphs", "Trees", "Hash tables", "Matrices and Tensors"],
+        correct: "Stacks and Queues"
+      },
+      {
+        id: 53,
+        sec: "activity",
+        label: "Module 1 Activity — Question 26",
+        q: "In Attack on Titan, scouts keep a record of Titans sighted during expeditions. What structure works best?",
+        type: "mcq",
+        choices: ["Arrays", "List", "Stacks and Queues", "Graphs", "Trees", "Hash tables", "Matrices and Tensors"],
+        correct: "List"
+      },
+      {
+        id: 54,
+        sec: "activity",
+        label: "Module 1 Activity — Question 27",
+        q: "In Attack on Titan, Titan positions and human outposts are mapped with connections. Which structure applies?",
+        type: "mcq",
+        choices: ["Arrays", "List", "Stacks and Queues", "Graphs", "Trees", "Hash tables", "Matrices and Tensors"],
+        correct: "Graphs"
+      },
+      {
+        id: 55,
+        sec: "activity",
+        label: "Module 1 Activity — Question 28",
+        q: "In Sword Art Online, the 3D VR environment (x × y × z with objects) is represented mathematically. What structure models this?",
+        type: "mcq",
+        choices: ["Array", "List", "Stacks and Queues", "Graphs", "Trees", "Hash tables", "Matrices and Tensors"],
+        correct: "Array"
+      },
+      {
+        id: 56,
+        sec: "activity",
+        label: "Module 1 Activity — Question 29",
+        q: "In Bleach, Soul Society captains follow a decision-making process that splits into different strategies. What structure fits?",
+        type: "mcq",
+        choices: ["Arrays", "List", "Stacks and Queues", "Graphs", "Trees", "Hash tables", "Matrices and Tensors"],
+        correct: "Trees"
+      },
+      {
+        id: 57,
+        sec: "activity",
+        label: "Module 1 Activity — Question 30",
+        q: "In Naruto, Team 7 keeps a record of all missions completed in sequence. Which structure is suitable?",
+        type: "mcq",
+        choices: ["Arrays", "List", "Stacks and Queues", "Graphs", "Trees", "Hash tables", "Matrices and Tensors"],
+        correct: "List"
+      },
+
+      // ==========================================
+      // SECTION 3: LONG QUIZ (30 Questions)
+      // ==========================================
+      {
+        id: 58,
+        sec: "longquiz",
+        label: "Long Quiz — Question 1",
+        q: "A student is analyzing 50,000 customer reviews and wants to keep track of how many times each word appears:\n\"good\" → 1,250\n\"excellent\" → 950\n\"bad\" → 430\n\nWhich data structure would be the most appropriate?",
+        type: "mcq",
+        choices: ["Dictionary", "Stack", "Graph", "Tensor"],
+        correct: "Dictionary"
+      },
+      {
+        id: 59,
+        sec: "longquiz",
+        label: "Long Quiz — Question 2",
+        q: "A student wants to divide a paragraph into individual sentences before performing further NLP processing.\n\nWhich NLTK function would be most appropriate?",
+        type: "mcq",
+        choices: ["word_tokenize()", "sent_tokenize()", "tensor_tokenize()", "graph_tokenize()"],
+        correct: "sent_tokenize()"
+      },
+      {
+        id: 60,
+        sec: "longquiz",
+        label: "Long Quiz — Question 3",
+        q: "A student stores:\n\"machine\" → 15\n\"learning\" → 23\n\"model\" → 18\n\nAnother student stores:\n[15, 23, 18]\n\nWhich statement best analyzes the difference?",
+        type: "mcq",
+        choices: [
+          "The first representation preserves a key-to-value relationship, while the second is a sequence of values.",
+          "Both representations are graphs.",
+          "The first is necessarily a tensor.",
+          "The second can only represent text."
+        ],
+        correct: "The first representation preserves a key-to-value relationship, while the second is a sequence of values."
+      },
+      {
+        id: 61,
+        sec: "longquiz",
+        label: "Long Quiz — Question 4",
+        q: "A tokenizer processes:\n\"unhappiness\"\nand produces:\n[\"un\", \"happi\", \"ness\"]\n\nWhat type of tokenization is being demonstrated?",
+        type: "mcq",
+        choices: ["Sentence-level", "Word-level", "Character-level", "Subword-level"],
+        correct: "Subword-level"
+      },
+      {
+        id: 62,
+        sec: "longquiz",
+        label: "Long Quiz — Question 5",
+        q: "A student runs an NLP program on:\n\"I love NLP. It's powerful!\"\n\nThe program produces:\n['I', 'love', 'NLP', '.', 'It', \"'s\", 'powerful', '!']\n\nWhat can the student reasonably conclude?",
+        type: "mcq",
+        choices: [
+          "It performed sentence-level tokenization.",
+          "It performed word-level tokenization while separating punctuation and the contraction.",
+          "It performed character-level tokenization.",
+          "It performed graph tokenization."
+        ],
+        correct: "It performed word-level tokenization while separating punctuation and the contraction."
+      },
+      {
+        id: 63,
+        sec: "longquiz",
+        label: "Long Quiz — Question 6",
+        q: "A language model frequently encounters unfamiliar or rare words. The development team wants a tokenizer that can break unfamiliar words into smaller meaningful units rather than treating every unfamiliar word as completely unknown.\n\nWhich approach would best address the problem?",
+        type: "mcq",
+        choices: ["Sentence tokenization", "Whitespace tokenization", "Subword tokenization", "Character removal"],
+        correct: "Subword tokenization"
+      },
+      {
+        id: 64,
+        sec: "longquiz",
+        label: "Long Quiz — Question 7",
+        q: "A social media company wants to represent users and their relationships. Each user is a node, while connections between users are edges.\n\nWhich data structure should the company consider?",
+        type: "mcq",
+        choices: ["List", "Dictionary", "Graph", "Stack"],
+        correct: "Graph"
+      },
+      {
+        id: 65,
+        sec: "longquiz",
+        label: "Long Quiz — Question 8",
+        q: "A developer proposes:\n\"We should use character-level tokenization for every NLP application because characters are smaller units, so they must always be better.\"\n\nWhat is the best evaluation?",
+        type: "mcq",
+        choices: [
+          "Correct, because smaller tokens always produce better models.",
+          "Incorrect, because the appropriate granularity depends on the NLP application.",
+          "Correct, because word tokenization is obsolete.",
+          "Incorrect, because tokenization isn't needed in NLP."
+        ],
+        correct: "Incorrect, because the appropriate granularity depends on the NLP application."
+      },
+      {
+        id: 66,
+        sec: "longquiz",
+        label: "Long Quiz — Question 9",
+        q: "A student needs to store a 2D frequency distribution of words in documents. Another student needs to represent multi-dimensional data for a deep learning model.\n\nWhich pairing is most appropriate?",
+        type: "mcq",
+        choices: [
+          "Matrix for the frequency distribution; tensor for multi-dimensional data",
+          "Tensor for the frequency distribution; matrix for all deep learning data",
+          "Stack for both",
+          "Graph for both"
+        ],
+        correct: "Matrix for the frequency distribution; tensor for multi-dimensional data"
+      },
+      {
+        id: 67,
+        sec: "longquiz",
+        label: "Long Quiz — Question 10",
+        q: "Two developers propose different designs for handling a large text dataset.\n\nDeveloper A: Stores every token in a list and uses a dictionary to track word frequencies.\nDeveloper B: Stores every token in a single graph even though the task only requires sequential token storage and frequency counting.\n\nWhich design is more appropriate?",
+        type: "mcq",
+        choices: [
+          "Developer A, because lists and dictionaries directly support the described tasks.",
+          "Developer B, because graphs should always be used for NLP.",
+          "Developer B, because dictionaries cannot store word frequencies.",
+          "Both are equally appropriate regardless of the task."
+        ],
+        correct: "Developer A, because lists and dictionaries directly support the described tasks."
+      },
+      {
+        id: 68,
+        sec: "longquiz",
+        label: "Long Quiz — Question 11",
+        q: "A customer service chatbot receives:\n\"I need to reset my password but can't find the link.\"\n\nWhy is tokenization important?",
+        type: "mcq",
+        choices: [
+          "It converts the chatbot into a decision tree.",
+          "It breaks the input into manageable units that help the system identify the user's intent.",
+          "It automatically translates the message.",
+          "It removes all meaningful words."
+        ],
+        correct: "It breaks the input into manageable units that help the system identify the user's intent."
+      },
+      {
+        id: 69,
+        sec: "longquiz",
+        label: "Long Quiz — Question 12",
+        q: "A developer is building an NLP system with the following requirements:\n- Split text into words.\n- Count how frequently each word occurs.\n- Convert numerical information into a format usable by a machine learning algorithm.\n\nWhich combination best matches the module?",
+        type: "mcq",
+        choices: [
+          "Word tokenization → Dictionary → Array/Matrix",
+          "Character tokenization → Graph → Stack",
+          "Sentence tokenization → Tree → Queue",
+          "Subword tokenization → Stack → Graph"
+        ],
+        correct: "Word tokenization → Dictionary → Array/Matrix"
+      },
+      {
+        id: 70,
+        sec: "longquiz",
+        label: "Long Quiz — Question 13",
+        q: "A researcher is developing a deep learning system that processes multi-dimensional numerical data.\n\nWhich structure would be most appropriate?",
+        type: "mcq",
+        choices: ["Python list only", "Tensor", "Stack", "Dictionary"],
+        correct: "Tensor"
+      },
+      {
+        id: 71,
+        sec: "longquiz",
+        label: "Long Quiz — Question 14",
+        q: "A machine learning dataset contains numerical features for thousands of samples. Each row represents one sample, while each column represents a feature.\n\nWhich structure is most appropriate?",
+        type: "mcq",
+        choices: ["2D NumPy array", "Stack", "Graph", "Dictionary containing sentences"],
+        correct: "2D NumPy array"
+      },
+      {
+        id: 72,
+        sec: "longquiz",
+        label: "Long Quiz — Question 15",
+        q: "A student has successfully tokenized a collection of documents. However, the machine learning model still cannot directly use the tokens as numerical input.\n\nWhat should the student consider next?",
+        type: "mcq",
+        choices: [
+          "Representing the text as structured numerical data such as feature vectors.",
+          "Removing all tokens.",
+          "Converting every token into a sentence.",
+          "Replacing the dataset with a graph regardless of the task."
+        ],
+        correct: "Representing the text as structured numerical data such as feature vectors."
+      },
+      {
+        id: 73,
+        sec: "longquiz",
+        label: "Long Quiz — Question 16",
+        q: "A developer explains:\n\"First, I divide the text into tokens. Then I store those tokens and transform them into numerical representations that the machine learning model can use.\"\n\nWhich concept best describes this process?",
+        type: "mcq",
+        choices: [
+          "Raw text remains unchanged throughout processing.",
+          "NLP transforms text into structured data structures suitable for machine learning.",
+          "Machine learning models can only process complete sentences.",
+          "Tokenization eliminates the need for feature vectors."
+        ],
+        correct: "NLP transforms text into structured data structures suitable for machine learning."
+      },
+      {
+        id: 74,
+        sec: "longquiz",
+        label: "Long Quiz — Question 17",
+        q: "A tokenizer processes:\n\"I don't like this product.\"\n\nA rule-based tokenizer is being considered because the system needs to handle contractions appropriately. Which result is consistent with the module?",
+        type: "mcq",
+        choices: [
+          "don't → do + n't",
+          "don't → d + o + n + t only",
+          "don't → sentence",
+          "don't → dictionary"
+        ],
+        correct: "don't → do + n't"
+      },
+      {
+        id: 75,
+        sec: "longquiz",
+        label: "Long Quiz — Question 18",
+        q: "A student writes:\nfrom nltk.tokenize import word_tokenize\ntext = \"Machine learning with NLTK is fun!\"\ntokens = word_tokenize(text)\nprint(tokens)\n\nThe program fails because the required tokenizer resource has not been downloaded. Based on the module example, what should the student add?",
+        type: "mcq",
+        choices: [
+          "nltk.download('punkt')",
+          "nltk.download('tensor')",
+          "nltk.download('dictionary')",
+          "nltk.download('numpy')"
+        ],
+        correct: "nltk.download('punkt')"
+      },
+      {
+        id: 76,
+        sec: "longquiz",
+        label: "Long Quiz — Question 19",
+        q: "A researcher is working with a language in which clear boundaries between words aren't always available. The researcher needs a very granular representation of the text.\n\nWhich tokenization strategy would be most suitable?",
+        type: "mcq",
+        choices: [
+          "Word-level tokenization",
+          "Character-level tokenization",
+          "Sentence-level tokenization",
+          "Dictionary tokenization"
+        ],
+        correct: "Character-level tokenization"
+      },
+      {
+        id: 77,
+        sec: "longquiz",
+        label: "Long Quiz — Question 20",
+        q: "A company is developing an NLP-based customer support system. The system must:\n- process customer messages,\n- identify individual words,\n- handle contractions,\n- determine important words and their frequencies,\n- convert the processed information into numerical representations,\n- and eventually use machine learning to make predictions.\n\nWhich solution best integrates the concepts from the two modules?",
+        type: "mcq",
+        choices: [
+          "Use tokenization to structure the text, a dictionary to map word frequencies, and arrays/matrices or tensors for numerical representations used by machine learning.",
+          "Use only character tokenization and store everything in a graph.",
+          "Skip tokenization and directly feed raw text into a decision tree.",
+          "Use a stack to store all text and avoid numerical representations."
+        ],
+        correct: "Use tokenization to structure the text, a dictionary to map word frequencies, and arrays/matrices or tensors for numerical representations used by machine learning."
+      },
+      {
+        id: 78,
+        sec: "longquiz",
+        label: "Long Quiz — Question 21",
+        q: "A team receives raw customer comments and needs to transform them into a form that a machine learning model can process. They decide to first divide the comments into individual words.\n\nWhich sequence best represents the transformation described in the module?",
+        type: "mcq",
+        choices: [
+          "Text → Tokens stored in a list",
+          "Text → Graph → Dictionary",
+          "Text → Tensor → Sentence",
+          "Text → Decision Tree → Tokens"
+        ],
+        correct: "Text → Tokens stored in a list"
+      },
+      {
+        id: 79,
+        sec: "longquiz",
+        label: "Long Quiz — Question 22",
+        q: "An e-commerce company wants to determine whether customers have positive or negative opinions.\n\nOne review states:\n\"The product is amazing, but the delivery was late.\"\n\nWhy would tokenization be useful?",
+        type: "mcq",
+        choices: [
+          "It allows meaningful textual units such as \"amazing\" and \"late\" to be processed by the sentiment model.",
+          "It automatically decides that the review is positive.",
+          "It removes all sentiment-bearing words.",
+          "It converts the review into a social network graph."
+        ],
+        correct: "It allows meaningful textual units such as \"amazing\" and \"late\" to be processed by the sentiment model."
+      },
+      {
+        id: 80,
+        sec: "longquiz",
+        label: "Long Quiz — Question 23",
+        q: "A research team is preparing text for a modern NLP model and wants to use a pre-trained subword tokenizer.\n\nWhich would be an appropriate choice?",
+        type: "mcq",
+        choices: ["BPE", "CSV", "Stack", "Decision Tree"],
+        correct: "BPE"
+      },
+      {
+        id: 81,
+        sec: "longquiz",
+        label: "Long Quiz — Question 24",
+        q: "A developer is creating a sentiment analysis system for customer reviews. The review contains:\n\"This product is amazing, but the delivery was late.\"\n\nThe system needs to identify individual words as well as punctuation so that the sentiment model can process the review properly. Which approach would be most appropriate?",
+        type: "mcq",
+        choices: [
+          "Sentence-level tokenization",
+          "Word-level tokenization",
+          "Character-level tokenization",
+          "Graph-based tokenization"
+        ],
+        correct: "Word-level tokenization"
+      },
+      {
+        id: 82,
+        sec: "longquiz",
+        label: "Long Quiz — Question 25",
+        q: "A student examines a decision tree and observes that internal nodes represent decisions while the final nodes represent possible outcomes.\n\nWhich conclusion is most appropriate?",
+        type: "mcq",
+        choices: [
+          "The tree represents a hierarchical decision-making process.",
+          "The tree is being used only to store word frequencies.",
+          "The tree is performing character tokenization.",
+          "The tree is replacing NLTK."
+        ],
+        correct: "The tree represents a hierarchical decision-making process."
+      },
+      {
+        id: 83,
+        sec: "longquiz",
+        label: "Long Quiz — Question 26",
+        q: "A developer is designing a system that must analyze the structure of individual letters in text rather than the meaning of complete words.\n\nWhich tokenizer should the developer prioritize?",
+        type: "mcq",
+        choices: ["Sentence tokenizer", "Word tokenizer", "Character tokenizer", "Subword tokenizer"],
+        correct: "Character tokenizer"
+      },
+      {
+        id: 84,
+        sec: "longquiz",
+        label: "Long Quiz — Question 27",
+        q: "A bank wants to classify loan applications by repeatedly making decisions based on applicant features.\n\nWhich structure would best represent this decision-making process?",
+        type: "mcq",
+        choices: ["Tree", "Queue", "List", "Character sequence"],
+        correct: "Tree"
+      },
+      {
+        id: 85,
+        sec: "longquiz",
+        label: "Long Quiz — Question 28",
+        q: "A search engine receives:\n\"best machine learning books\"\n\nBefore searching through a large collection of documents, the system needs to break the query into manageable units.\n\nWhat role does tokenization play?",
+        type: "mcq",
+        choices: [
+          "It helps dissect the query so the system can search for relevant information.",
+          "It converts the query directly into a decision tree.",
+          "It removes the need for a search algorithm.",
+          "It guarantees every search result will be correct."
+        ],
+        correct: "It helps dissect the query so the system can search for relevant information."
+      },
+      {
+        id: 86,
+        sec: "longquiz",
+        label: "Long Quiz — Question 29",
+        q: "A university wants to analyze student feedback. The development team proposes:\nRaw feedback → Tokenization → Word frequency mapping → Numerical feature representation → Machine learning model\n\nWhich assessment is most consistent with the modules?",
+        type: "mcq",
+        choices: [
+          "It demonstrates how NLP transforms raw text into structured input for machine learning.",
+          "It is incorrect because NLP systems should never use dictionaries.",
+          "It is incorrect because tokenization must always be the final step.",
+          "It is only applicable to image processing."
+        ],
+        correct: "It demonstrates how NLP transforms raw text into structured input for machine learning."
+      },
+      {
+        id: 87,
+        sec: "longquiz",
+        label: "Long Quiz — Question 30",
+        q: "A translation system receives a sentence in one language and needs to process its individual components before producing the translated sentence.\n\nWhy is tokenization useful?",
+        type: "mcq",
+        choices: [
+          "It segments the source text into manageable units that can be processed and translated.",
+          "It guarantees identical grammar between languages.",
+          "It eliminates the need for language processing.",
+          "It changes every word into a graph."
+        ],
+        correct: "It segments the source text into manageable units that can be processed and translated."
+      }
+    ];
+
+    // State stores
+    let userSelections = {}; // id -> string
+    let activeFilter = 'all';
+    let isGraded = false;
+
+    function renderQuestions() {
+      const container = document.getElementById("questionsContainer");
+      container.innerHTML = "";
+
+      const filtered = questions.filter(q => activeFilter === 'all' || q.sec === activeFilter);
+
+      filtered.forEach((q) => {
+        const card = document.createElement("div");
+        card.className = "bg-white rounded-xl shadow-sm border border-slate-200 p-5 md:p-6 transition";
+        card.id = `card-${q.id}`;
+
+        // Top tag & status
+        const topBar = document.createElement("div");
+        topBar.className = "flex justify-between items-center mb-3 text-xs";
+
+        const badge = document.createElement("span");
+        badge.className = "font-semibold px-2 py-0.5 rounded bg-slate-100 text-slate-700 border border-slate-200";
+        badge.textContent = q.label;
+
+        const resultPill = document.createElement("span");
+        resultPill.id = `pill-${q.id}`;
+        resultPill.className = "hidden px-2 py-0.5 rounded font-bold";
+
+        topBar.appendChild(badge);
+        topBar.appendChild(resultPill);
+        card.appendChild(topBar);
+
+        // Question text
+        const prompt = document.createElement("p");
+        prompt.className = "text-slate-800 font-medium whitespace-pre-line text-sm md:text-base mb-4 leading-relaxed";
+        prompt.textContent = q.q;
+        card.appendChild(prompt);
+
+        // Input forms
+        if (q.type === "mcq") {
+          const optContainer = document.createElement("div");
+          optContainer.className = "space-y-2";
+
+          q.choices.forEach((choice) => {
+            const label = document.createElement("label");
+            const isChecked = userSelections[q.id] === choice;
+            label.className = `choice-option flex items-start gap-3 p-3 rounded-lg border border-slate-200 cursor-pointer text-sm transition ${isChecked ? 'selected-opt' : ''}`;
+            label.id = `opt-${q.id}-${cleanStr(choice)}`;
+
+            const radio = document.createElement("input");
+            radio.type = "radio";
+            radio.name = `q-${q.id}`;
+            radio.value = choice;
+            radio.checked = isChecked;
+            radio.className = "mt-0.5 text-indigo-600 focus:ring-indigo-500";
+            radio.onchange = () => selectMCQ(q.id, choice);
+
+            const span = document.createElement("span");
+            span.textContent = choice;
+
+            label.appendChild(radio);
+            label.appendChild(span);
+            optContainer.appendChild(label);
+          });
+
+          card.appendChild(optContainer);
+        } else if (q.type === "text") {
+          const input = document.createElement("input");
+          input.type = "text";
+          input.id = `input-${q.id}`;
+          input.value = userSelections[q.id] || "";
+          input.placeholder = "Enter your answer...";
+          input.className = "w-full md:w-80 px-3.5 py-2 border rounded-lg text-sm border-slate-300 focus:ring-2 focus:ring-indigo-500 focus:outline-none";
+          input.oninput = (e) => recordText(q.id, e.target.value);
+
+          card.appendChild(input);
+        }
+
+        // Feedback element (revealed upon grading)
+        const feedback = document.createElement("div");
+        feedback.id = `feedback-${q.id}`;
+        feedback.className = "hidden mt-4 p-3 rounded-lg text-xs md:text-sm";
+        card.appendChild(feedback);
+
+        container.appendChild(card);
+      });
+
+      updateStats();
+      if (isGraded) applyGradingUI();
+    }
+
+    function cleanStr(str) {
+      return str.replace(/[^a-zA-Z0-9]/g, '');
+    }
+
+    function selectMCQ(qid, val) {
+      userSelections[qid] = val;
+      updateStats();
+      // highlight active
+      const labels = document.querySelectorAll(`[id^='opt-${qid}-']`);
+      labels.forEach(l => l.classList.remove('selected-opt'));
+      const active = document.getElementById(`opt-${qid}-${cleanStr(val)}`);
+      if (active) active.classList.add('selected-opt');
+    }
+
+    function recordText(qid, val) {
+      userSelections[qid] = val.trim();
+      updateStats();
+    }
+
+    function updateStats() {
+      const answered = Object.values(userSelections).filter(v => v !== "").length;
+      document.getElementById("answeredCount").textContent = answered;
+    }
+
+    function setFilter(filter) {
+      activeFilter = filter;
+      document.querySelectorAll(".tab-btn").forEach(btn => {
+        btn.classList.remove("bg-indigo-600", "text-white");
+        btn.classList.add("bg-white", "text-slate-700");
+      });
+      document.getElementById(`tab-${filter}`).classList.add("bg-indigo-600", "text-white");
+      document.getElementById(`tab-${filter}`).classList.remove("bg-white", "text-slate-700");
+      renderQuestions();
+    }
+
+    function gradeAll() {
+      isGraded = true;
+      let score = 0;
+
+      questions.forEach((q) => {
+        const userVal = (userSelections[q.id] || "").trim().toLowerCase();
+        let correct = false;
+
+        if (q.type === "mcq") {
+          correct = (userVal === q.correct.toLowerCase());
+        } else if (q.type === "text") {
+          correct = q.accepted.some(ans => ans.toLowerCase() === userVal);
+        }
+
+        if (correct) score++;
+      });
+
+      document.getElementById("scoreBadge").textContent = `${score} / ${questions.length} (${Math.round((score/questions.length)*100)}%)`;
+      applyGradingUI();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function applyGradingUI() {
+      questions.forEach((q) => {
+        const userVal = (userSelections[q.id] || "").trim();
+        const pill = document.getElementById(`pill-${q.id}`);
+        const feedback = document.getElementById(`feedback-${q.id}`);
+        if (!pill || !feedback) return;
+
+        pill.classList.remove("hidden", "bg-emerald-100", "text-emerald-800", "bg-rose-100", "text-rose-800");
+        feedback.classList.remove("hidden", "bg-emerald-50", "text-emerald-900", "border-emerald-300", "bg-rose-50", "text-rose-900", "border-rose-300");
+
+        let correct = false;
+        if (q.type === "mcq") {
+          correct = (userVal.toLowerCase() === q.correct.toLowerCase());
+        } else if (q.type === "text") {
+          correct = q.accepted.some(ans => ans.toLowerCase() === userVal.toLowerCase());
+        }
+
+        if (correct) {
+          pill.textContent = "Correct ✓";
+          pill.classList.add("bg-emerald-100", "text-emerald-800");
+          feedback.innerHTML = `<strong>Correct:</strong> Selected answer <span class="font-bold underline">${userVal}</span> is correct.`;
+          feedback.classList.add("bg-emerald-50", "text-emerald-900", "border", "border-emerald-300");
+        } else {
+          pill.textContent = "Incorrect ✗";
+          pill.classList.add("bg-rose-100", "text-rose-800");
+          const ansString = q.type === "mcq" ? q.correct : q.accepted.join(" or ");
+          feedback.innerHTML = `<strong>Incorrect.</strong> Your answer: <span class="line-through">${userVal || "(Unanswered)"}</span><br>Official answer: <span class="font-bold text-emerald-800 underline">${ansString}</span>`;
+          feedback.classList.add("bg-rose-50", "text-rose-900", "border", "border-rose-300");
+        }
+
+        // Highlight choices
+        if (q.type === "mcq") {
+          q.choices.forEach(ch => {
+            const optElem = document.getElementById(`opt-${q.id}-${cleanStr(ch)}`);
+            if (optElem) {
+              if (ch.toLowerCase() === q.correct.toLowerCase()) {
+                optElem.classList.add("bg-emerald-50", "border-emerald-500", "text-emerald-900", "font-medium");
+              } else if (ch.toLowerCase() === userVal.toLowerCase()) {
+                optElem.classList.add("bg-rose-50", "border-rose-400", "text-rose-900");
+              }
+            }
+          });
+        }
+      });
+    }
+
+    function resetExam() {
+      if (confirm("Reset all chosen answers and begin a fresh attempt?")) {
+        userSelections = {};
+        isGraded = false;
+        document.getElementById("scoreBadge").textContent = "--";
+        renderQuestions();
+      }
+    }
+
+    // Initial render
+    window.onload = renderQuestions;
+  </script>
+</body>
+</html>
+```eof
+
+### How This Retake Quiz Works
+1. **Unanswered by Default:** All radio options and text fields start blank, allowing you to re-attempt the entire assessment from scratch[cite: 43, 44, 45].
+2. **Complete 87 Questions Included:**
+   - **Review Quiz (1–27):** Includes all multiple-choice questions and fill-in-the-blank items (*articles*, *adjective*, *conjunction*, *lemma*, *pronoun*, *prepositions*)[cite: 44].
+   - **Module 1 Activity (28–57):** Contains all 30 anime-themed scenario questions testing arrays, lists, stacks/queues, trees, graphs, hash tables, and matrices/tensors[cite: 45].
+   - **Long Quiz (58–87):** Covers the full 30 questions on NLTK functions (`sent_tokenize()`, `punkt`), BPE subword tokenization, contractions, and multi-dimensional matrices and tensors[cite: 43].
+3. **Submit & Grade Mode:** You can choose your answers first without seeing the answer key right away. Clicking **"Submit & Grade Exam"** calculates your total score and percentage, marks wrong and right answers, and displays the official DLSU-D course answers alongside your selections[cite: 43, 44, 45].
+4. **Instant Retake:** The **"Reset"** button clears your answers so you can retake the quiz as many times as needed.
